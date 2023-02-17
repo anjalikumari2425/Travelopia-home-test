@@ -1,0 +1,12 @@
+.input-field {
+  .MuiOutlinedInput-root {
+    border-radius: 12px;
+    padding: 1em;
+    @include font-styling;
+  }
+  
+  .MuiFormHelperText-root {
+    @include font-styling;
+    font-size: 9px;
+  }
+}
