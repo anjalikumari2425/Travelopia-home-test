@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import {validateEmail} from '../utils/validation-helper';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -51,6 +52,10 @@ const UserForm = (props) =>{
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(e, formdata);
+    if (!validateEmail(formdata.email)) {
+      alert("Please enter a valid email");
+      return;
+    }
     axios.post('users', formdata)
     .then(function (response) {
       console.log(response);
