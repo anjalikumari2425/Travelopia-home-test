@@ -1,12 +1,24 @@
+.form-container {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.country-field {
+  width: 100%;
+  margin-bottom: 1em !important;
+}
+
 .input-field {
-  .MuiOutlinedInput-root {
+  width: 100%;
+  margin-bottom: 1em !important;
     border-radius: 12px;
     padding: 1em;
-    @include font-styling;
-  }
-  
-  .MuiFormHelperText-root {
-    @include font-styling;
-    font-size: 9px;
-  }
 }

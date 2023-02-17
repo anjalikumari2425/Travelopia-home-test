@@ -8,7 +8,7 @@ function App() {
   const [show, setShow] = useState(true)
   return (
     <div className="App">
-      <button onClick={()=>setShow(!show)}>{show? "Show User Details":"Add User"}</button>
+      <button className="user-button" onClick={()=>setShow(!show)}>{show? "Show User Details":"Add User"}</button>
       {show? <UserForm/>:<UserDetails/>}
     </div>
   );

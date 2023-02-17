@@ -1,55 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import axios from "axios";
 import './UserDetails.css';
 
-// useEffect(() => {
-//     axios({
-//       url: "/users",
-//     })
-//       .then((res) => {
-        
-//         console.log(res.data.user);
-//         setList(res.data.user);
-        
-//       })
-//       .catch((err) => {
-        
-//         console.log(err);
-//       });
-//   }, []);
+const UserDetails = (props) =>{
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '90%',
-    height: '100%',
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: '25ch',
-    },
-  },
-  containerStyle: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 150,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
-
-const UserForm = (props) =>{
-  // const classes = useStyles();
+  useEffect(() => {
+    axios({
+      url: "http://localhost:8080/users",
+    })
+      .then((res) => {
+        console.log(res.data);
+        setUsersList(res.data);
+        
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const [usersList, setUsersList] = useState([]);
 
@@ -83,5 +50,5 @@ const UserForm = (props) =>{
   );
 }
 
-export default UserForm;
+export default UserDetails;
 

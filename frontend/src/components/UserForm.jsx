@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import {validateEmail} from '../utils/validation-helper';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
@@ -7,39 +6,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import axios from "axios";
 import './UserForm.css';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '90%',
-    height: '100%',
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: '25ch',
-    },
-  },
-  containerStyle: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 150,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
-
 const UserForm = (props) =>{
-  const classes = useStyles();
   const [formdata, setFormdata] = useState({});
 
   const handleChange = (e) => {
@@ -56,14 +27,14 @@ const UserForm = (props) =>{
       alert("Please enter a valid email");
       return;
     }
-    axios.post('users', formdata)
+    axios.post('http://localhost:8080/users', formdata)
     .then(function (response) {
       console.log(response);
       alert("Successfully details are added")
     })
     .catch(function (error) {
       console.log(error);
-      alert("failed to add the user details, please fill the details")
+      alert("Failed to add the user details, please fill the details")
     });
   };
 
@@ -71,24 +42,26 @@ const UserForm = (props) =>{
   {
     value: 'India',
     label: 'India',
+    default: true,
   },
   {
-    value: 'AFRICA',
+    value: 'Africa',
     label: 'Africa',
   },
   {
-    value: 'EUROPE',
+    value: 'Europe',
     label: 'Europe',
   },
 ];
 
   return (
-    <form className={classes.root} onSubmit={handleSubmit}>
-      <div sx={classes.containerStyle}>
+    <div className="form-container">
+    <form className="user-form" onSubmit={handleSubmit}>
         <TextField
           required
           id="name"
           label="Name"
+          name="name"
           className="input-field"
           variant="outlined"
           placeholder="Enter your name"
@@ -99,14 +72,14 @@ const UserForm = (props) =>{
           required
           id="email"
           label="Email"
+          name="email"
           variant="outlined"
+          className="input-field"
           placeholder="Enter your email"
           value={formdata['email']}
           onChange={handleChange}
         />
-      </div>
-      <div>
-        <FormControl className={classes.formControl}>
+        <FormControl className="country-field">
           <InputLabel id="country-label">Country</InputLabel>
           <Select
             labelId="country-label"
@@ -118,7 +91,7 @@ const UserForm = (props) =>{
             label="Country"
           >
           {countries.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
+            <MenuItem default={option.default} key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
           ))}
@@ -128,7 +101,9 @@ const UserForm = (props) =>{
           required
           id="passengers"
           label="Number of Passengers"
+          name="passengers"
           type="number"
+          className="input-field"
           variant="outlined"
           value={formdata['passengers']}
           onChange={handleChange}
@@ -137,17 +112,19 @@ const UserForm = (props) =>{
           required
           id="budget"
           label="Budget per person"
+          name="budget"
           type="number"
+          className="input-field"
           variant="outlined"
           placeholder="Budget per person in $"
           value={formdata['budget']}
           onChange={handleChange}
         />
-      </div>
       <Button variant="contained" color="primary" type="submit">
         Submit
       </Button>
     </form>
+    </div>
     
   );
 }

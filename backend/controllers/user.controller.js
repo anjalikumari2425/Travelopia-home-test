@@ -10,14 +10,19 @@ router.get('/', async(req,res)=> {
 });
 
 router.post('/', async(req,res)=> {
-  const {name,email,country,passengers,currency} = req.body;
-  // userModel.create({name,email,country,passengers,currency});
-  const user = new userModel({name,email,country,passengers,currency});
+  try {
+    console.log(req.body);
+    const {name,email,country,passengers,budget} = req.body;
+  const user = await userModel.create({name,email,country,passengers,budget});
   user.save((err,result)=>{
     if(err) throw err;
     console.log(result);
   });
   res.send(user);
+  }
+  catch(err) {
+    res.status(400).send(err);
+  }
 });
 
 module.exports = router;
