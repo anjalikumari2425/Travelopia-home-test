@@ -3,16 +3,21 @@
 Steps to run the project:
 
 ##Frontend
-cd frontend
-npm i
-npm start
+
+* cd frontend
+* npm i
+* npm start
 
 ##Backend
-cd backend
-npm i
-npm start
 
-Should have mongoDb installed.
+* cd backend
+* npm i
+* npm start
+
+Pre-requisite
+
+* Should have node installed.
+* Should have mongoDb installed.
 
 Description of the project:
 
