@@ -6,17 +6,17 @@ import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import axios from "axios";
+import {baseUrl} from './../configs/local.js';
 import './UserForm.css';
 
 const UserForm = (props) =>{
-  const [formdata, setFormdata] = useState({});
+  const [formdata, setFormdata] = useState({name: "",email: "",country: "", passengers: 0,budget: 0});
 
   const handleChange = (e) => {
     setFormdata({
       ...formdata,
-      [e.target.id || e.target.name]: e.target.value,
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -27,7 +27,7 @@ const UserForm = (props) =>{
       alert("Please enter a valid email");
       return;
     }
-    axios.post('http://localhost:8080/users', formdata)
+    axios.post(`${baseUrl}/users`, formdata)
     .then(function (response) {
       console.log(response);
       alert("Successfully details are added")
@@ -80,7 +80,7 @@ const UserForm = (props) =>{
           onChange={handleChange}
         />
         <FormControl className="country-field">
-          <InputLabel id="country-label">Country</InputLabel>
+          <InputLabel className="country-label" id="country-label">Country</InputLabel>
           <Select
             labelId="country-label"
             id="country"

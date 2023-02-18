@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
+import {baseUrl} from './../configs/local.js';
 import './UserDetails.css';
 
 const UserDetails = (props) =>{
 
   useEffect(() => {
     axios({
-      url: "http://localhost:8080/users",
+      url: `${baseUrl}/users`,
     })
       .then((res) => {
         console.log(res.data);
