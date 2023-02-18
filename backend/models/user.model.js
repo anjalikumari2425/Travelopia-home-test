@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const UserSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
-    email: { type: String, required: true, unique: true , sparse: true },
+    email: { type: String, required: true, unique: true, sparse: true },
     country: { type: String, required: true,enum: ["-", "India","Africa","Europe"],default: "-", },
     passengers:{ type: Number, required: true },
     budget:{type: Number, required: true}
