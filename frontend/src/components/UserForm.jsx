@@ -11,7 +11,7 @@ import {baseUrl} from './../configs/local.js';
 import './UserForm.css';
 
 const UserForm = (props) =>{
-  const [formdata, setFormdata] = useState({name: "",email: "",country: "", passengers: 0,budget: 0});
+  const [formdata, setFormdata] = useState({name: "",email: "",country: "India", passengers: 0,budget: 0});
 
   const handleChange = (e) => {
     setFormdata({
